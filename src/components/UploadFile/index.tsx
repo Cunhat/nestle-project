@@ -11,8 +11,10 @@ type UploadFileProps = {
 
 export const UploadFile: React.FC<UploadFileProps> = ({ onFileUpload }) => {
   const [files, setFiles] = useState<File[]>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const uploadFile = () => {
+    setLoading(true);
     if (files !== undefined && files?.length > 0) onFileUpload(files[0]);
   };
 
@@ -44,11 +46,11 @@ export const UploadFile: React.FC<UploadFileProps> = ({ onFileUpload }) => {
       </div>
       <div className="flex justify-center">
         <Button
-          disabled={files === undefined || files?.length === 0}
+          disabled={files === undefined || files?.length === 0 || loading}
           intent="primary"
           onClick={() => uploadFile()}
         >
-          Generate table
+          {loading ? "Loading..." : "Upload"}
         </Button>
       </div>
     </div>
