@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <div className="flex h-full flex-col items-center bg-white px-1 pt-3 text-xs">
+    <div className="flex h-full flex-col items-center bg-white px-5 pt-3 text-xs">
       {!render && <UploadFile onFileUpload={parseCsv} />}
       {render && <BasicTable headers={headers ?? []} data={data} />}
     </div>

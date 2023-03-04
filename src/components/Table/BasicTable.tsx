@@ -38,13 +38,17 @@ export const BasicTable: React.FC<{
   });
 
   return (
-    <div>
-      <table>
+    <div className="flex w-full flex-col gap-3">
+      <table className="table-auto [&>tbody>*:nth-child(even)]:bg-indigo-50 [&>tbody>*:nth-child(odd)]:bg-white ">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <th
+                  key={header.id}
+                  align="left"
+                  className="bg-primary p-3 text-white first:rounded-tl-xl last:rounded-tr-xl"
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -58,9 +62,9 @@ export const BasicTable: React.FC<{
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr key={row.id} className="bg-gray-500 hover:cursor-pointer">
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
+                <td key={cell.id} className="py-2 pl-3 text-text-primary">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -84,7 +88,7 @@ export const BasicTable: React.FC<{
           ))}
         </tfoot> */}
       </table>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <button
           className="rounded border p-1"
           onClick={() => table.setPageIndex(0)}
